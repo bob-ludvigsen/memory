@@ -13,6 +13,7 @@ if (Meteor.isClient) {
                 for (var x = 0; x < 10; x++) {
                     inputs += x;
                     console.log(x);
+                    
 
                 }
             }
