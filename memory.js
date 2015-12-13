@@ -7,18 +7,37 @@ if (Meteor.isClient) {
             return Session.get('counter');
         },
         grid: function () {
-            var inputs = '';
-            for (var i = 0; i < 10; i++) {
-
-                for (var x = 0; x < 10; x++) {
-                    inputs += x;
-                    console.log(x);
-                    
-
+            var cols = 10;
+            var rows = 10;
+           // function genDivs(rows,cols){
+                var e = document.getElementById("target");
+                var cols = cols || rows;
+                for(var r = 0; r < rows; r++) {
+                    var row = document.createElement("div");
+                    row.className = "row";
+                    for(var c = 0; c < cols; c++) {
+                        var col = document.createElement("div");
+                        col.className = "col";
+                        col.innerHTML = (r * rows) + c;
+                        col.innerHTML = getElement();
+                        row.appendChild(col);
+                    }
+                    e.appendChild(row);
                 }
+            //}
+            function getElement(){
+                var elements = [
+                    "A",
+                    "B",
+                    "C"
+                ]
+                return elements[Math.floor(Math.random() * (elements.length))];
             }
-            return inputs;
+           // document.getElementById("code").innerText = e.innerHTML;
+
         }
+
+
     });
 
     Template.hello.events({

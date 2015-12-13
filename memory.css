@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+.row { width: 100%; clear: both; text-align: center; }
+.col { display: inline-block; min-height: 20px; min-width: 20px; padding: 8px 10px; background-color: #ededed; margin: 1px; }
+.col:hover { background-color: #333333; color: #ffffff; }
