@@ -1,55 +1,77 @@
 if (Meteor.isClient) {
-    // counter starts at 0
-    Session.setDefault('counter', 0);
 
-    Template.hello.helpers({
-        counter: function () {
-            return Session.get('counter');
-        },
-        grid: function () {
-            var cols = 10;
-            var rows = 10;
-           // function genDivs(rows,cols){
-                var e = document.getElementById("target");
-                var cols = cols || rows;
-                for(var r = 0; r < rows; r++) {
-                    var row = document.createElement("div");
-                    row.className = "row";
-                    for(var c = 0; c < cols; c++) {
-                        var col = document.createElement("div");
-                        col.className = "col";
-                        col.innerHTML = (r * rows) + c;
-                        col.innerHTML = getElement();
-                        row.appendChild(col);
-                    }
-                    e.appendChild(row);
-                }
-            //}
-            function getElement(){
-                var elements = [
-                    "A",
-                    "B",
-                    "C"
-                ]
-                return elements[Math.floor(Math.random() * (elements.length))];
+    Template.hello.onRendered(function(){
+
+        var cols = 5;
+        var rows = 5;
+        // function genDivs(rows,cols){
+        var e = document.getElementById("target");
+        var cols = cols || rows;
+        for(var r = 0; r < rows; r++) {
+            var row = document.createElement("div");
+            row.className = "row";
+
+            for(var c = 0; c < cols; c++) {
+                var col = document.createElement("div");
+                var front = document.createElement("div");
+                front.className = "front";
+                front.onclick = function() {
+                    $(".card").flip();
+                };
+                var back = document.createElement("div");
+                back.className = "back";
+                back.innerHTML = getElement();
+                front.onclick = function() {
+                    $(".card").flip();
+                };
+                col.className = "card";
+
+                //col.innerHTML = (r * rows) + c;
+                col.appendChild(front);
+                col.appendChild(back);
+                //col.innerHTML = getElement();
+                /*var front = document.createElement("div");
+                 front.className = "front";
+                 front.innerHTML = (r * rows) + c;
+                 front.innerHTML = "front";
+                 row.appendChild(back);*/
+                row.appendChild(col);
             }
-           // document.getElementById("code").innerText = e.innerHTML;
-
+            e.appendChild(row);
         }
+        //}
+        function getElement(){
+            var elements = [
+                "A",
+                "B",
+                "C"
+            ]
+            return elements[Math.floor(Math.random() * (elements.length))];
+        }
+
+        //invoke the flip function to add the css to the grid..
+        $(".card").flip();
 
 
     });
 
     Template.hello.events({
         'click button': function () {
-            // increment the counter when button is clicked
-            Session.set('counter', Session.get('counter') + 1);
+
+        },
+
+        'click .card': function () {
+
+
         }
+
     });
 }
 
-if (Meteor.isServer) {
-    Meteor.startup(function () {
-        // code to run on server at startup
-    });
-}
+/*
+
+Meteor.startup( function () {
+
+})
+
+*/
