@@ -65,3 +65,6 @@ html, body {
 .front{
 	background-color: darkred;
 }
+#target{
+	display: none;
+}

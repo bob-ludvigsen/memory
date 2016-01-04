@@ -1,11 +1,27 @@
 if (Meteor.isClient) {
 
+    Template.hello.helpers({
+
+        fade:function () {
+
+        }
+
+    });
+
+
+
+
+
+
+
     Template.hello.onRendered(function(){
 
         var cols = 5;
         var rows = 5;
         // function genDivs(rows,cols){
+
         var e = document.getElementById("target");
+
         var cols = cols || rows;
         for(var r = 0; r < rows; r++) {
             var row = document.createElement("div");
@@ -17,6 +33,7 @@ if (Meteor.isClient) {
                 front.className = "front";
                 front.onclick = function() {
                     $(".card").flip();
+
                 };
                 var back = document.createElement("div");
                 back.className = "back";
@@ -51,6 +68,7 @@ if (Meteor.isClient) {
 
         //invoke the flip function to add the css to the grid..
         $(".card").flip();
+        $('#target').fadeIn('slow');
 
 
     });
