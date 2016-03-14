@@ -1,0 +1,47 @@
+<template name="login">
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4">
+
+
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Login</h2>
+        <label for="inputEmail" class="sr-only">Email adresse</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        <label for="inputPassword" class="sr-only">Adgangskode</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Adgangskode" required>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log på</button>
+    </form>
+            <br/>
+
+            <p class="text-center"><a data-toggle="modal" href="/ForgotPassword">Glemt adgangskode!</a></p>
+
+        </div>
+    </div>
+
+  <!--  {{> resetpasswd}}-->
+  <!--  <div id="loginmodal" class="modal fade modalheight" tabindex="-1" data-width="760" style="display:none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{> loginModalInner}}
+            </div>
+        </div>
+    </div>-->
+</template>
+<!--
+
+<template name="loginModalInner">
+    <div class="modal-body">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Login</h2>
+            <label for="inputEmail" class="sr-only">Email adresse</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Adgangskode</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <br/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log på</button>
+        </form>
+    </div>
+</template>
+-->

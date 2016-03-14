@@ -1,0 +1,108 @@
+
+<template name="searchfr">
+
+    <div class="page-header">
+        <h1>Fransk - dansk <small>ordliste</small></h1>
+    </div>
+    <p>Din søgning giver: {{total}} resultater</p>
+
+ <!--   {{> esInput index="wordsfr" reactive=false placeholder="Indtast fransk ord..." }}
+    <div>Søg Fransk - Dansk</div>-->
+
+    <b><p>Søg på franske ord og forkortelser</p></b>
+    <div class="grey-background">
+        <div class="input-group">
+
+            {{> esInput index="wordsfr"  class="form-control empty"  reactive="false"  placeholder="Indtast fransk ord eller forkortelse..." }}
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="results-wrapper">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Fransk</th>
+                    <th>Dansk</th>
+                    <th>FR fork</th>
+                    <th>DK fork</th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+                {{#esEach index="wordsfr"}}
+                    <tr>
+                        <td>{{FR}} ({{Ordklasse}})</td>
+                        <td>{{DK}}</td>
+                        <td>{{FRForkortelse}}</td>
+                        <td>{{DKforkortelse}}</td>
+                    </tr>
+                {{/esEach}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{> esLoadMoreButton index="wordsfr" content="Hent flere.."}}
+
+{{#ifEsInputIsEmpty index="wordsfr"}}
+
+
+        <h1>Vejledning</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{> vejl}}
+
+
+        </div>
+        <div class="col-md-6">
+            <p><b> Følgende forkortelser og signaturer er anvendt:</b></p>
+
+            <p>f femininum</p>
+
+            <p>m maskulinum</p>
+
+            <p>sing singularis (ental)</p>
+
+            <p>pl pluralis (flertal)</p>
+
+            <p>adj adjektiv (tillægsord)</p>
+
+            <p>adv adverbium (biord)</p>
+
+            <p>præp præposition (forholdsord)</p>
+
+            <p>1. verbum (udsagnsord, 1. regelmæssig bøjning)</p>
+
+            <p>2. verbum (udsagnsord, 2. regelmæssig bøjning)</p>
+
+            <p>3. verbum (udsagnsord, 3. regelmæssig bøjning)</p>
+
+            <p>U verbum (udsagnsord, uregelmæssig bøjning)</p>
+
+            <p>* omtrentlig oversættelse til det pågældende sprog</p>
+        </div>
+    </div>
+
+    {{/ifEsInputIsEmpty }}
+
+    {{#ifEsIsSearching index="wordsfr"}}
+        <div>Henter data...</div>
+        {{> spinner}}
+
+
+    {{/ifEsIsSearching}}
+
+    {{#ifEsHasNoResults index="wordsfr"}}
+        <div class="no-results">Beklager, men det kan jeg ikke finde til dig!</div>
+    {{/ifEsHasNoResults}}
+ </template>

@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-    Template.hello.helpers({
+    Template.home.helpers({
 
         fade:function () {
 
@@ -14,7 +14,7 @@ if (Meteor.isClient) {
 
 
 
-    Template.hello.onRendered(function(){
+    Template.home.onRendered(function(){
 
         var cols = 5;
         var rows = 5;
@@ -73,10 +73,7 @@ if (Meteor.isClient) {
 
     });
 
-    Template.hello.events({
-        'click button': function () {
-
-        },
+    Template.home.events({
 
         'click .card': function () {
 

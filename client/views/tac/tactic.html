@@ -1,0 +1,98 @@
+<template name="searchTactic">
+
+    <div class="page-header">
+        <h1>HRN 918-021 Hærens Taktiske Ordbog</h1>
+    </div>
+
+    <p>Din søgning giver: {{total}} resultater</p>
+    <b><p>Søg på indhold i alle felter</p></b>
+
+    <div class="grey-background">
+    <div class="input-group">
+
+        {{> esInput index="taktik"  class="form-control empty"  reactive="false"  placeholder="Søg..." }}
+        <div class="input-group-btn">
+            <button type="submit" class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
+        </div>
+    </div>
+    </div>
+    <div class="results-wrapper">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Begreb/ord</th>
+                    <th>Forkortelse</th>
+                    <th>Definition</th>
+                    <th>NATO oversættelse og forkortelse</th>
+                    <th>Bemærkning</th>
+                    <th>Rev. dato</th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>
+
+
+
+
+                    </td>
+                </tr>
+
+
+                {{#esEach index="taktik"}}
+                    <tr>
+
+                        <td>{{ord}}</td>
+                        <td>{{fork}}</td>
+                        <td>{{definition}}</td>
+                        <td>{{nato_translation}}</td>
+                        <td>{{remark}}</td>
+                        <td>{{rev}}</td>
+                    </tr>
+                {{/esEach}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{> esLoadMoreButton index="taktik" class="btn-primary" content="Hent flere.."}}
+
+
+{{#ifEsInputIsEmpty index="taktik"}}
+
+        <h1>Vejledning</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            {{> vejl}}
+
+            <p><a class="btn btn-default black" href="/descriptiontac" role="button">Læs mere om Hærens Taktiske Ordbog</a>
+            </p>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+        </div>
+        <div class="col-md-6">
+
+
+        </div>
+    </div>
+
+{{/ifEsInputIsEmpty}}
+
+
+    {{#ifEsIsSearching index="taktik"}}
+        <div>Henter data...</div>
+        {{> spinner}}
+
+
+    {{/ifEsIsSearching}}
+
+    {{#ifEsHasNoResults index="taktik"}}
+        <div class="no-results">Beklager, men det kan jeg ikke finde til dig!</div>
+    {{/ifEsHasNoResults}}
+</template>

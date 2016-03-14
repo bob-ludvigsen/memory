@@ -1,0 +1,68 @@
+<template name="nav">
+    <nav class="navbar navbar-default default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/"><img class="img-responsive" id="imgsize" src="VFKLOGO.png"/></a>
+                <a class="navbar-brand" href="/">Forsvarets ordlister
+                    </a>
+
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                   <!-- <li><a href="/" class="hidden-xs">Introduktion</a></li>
+                    <li><a href="/" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Introduktion</a></li>-->
+
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Engelsk<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                            <li class="dropdown-header">Engelsk</li>
+                            <li><a href="/searchEng">Dansk/Engelsk</a></li>
+                            <li><a href="/searchEngDa">Engelsk/Dansk</a></li>
+                            <li><a href="/searchDkFork">Danske forkortelser</a></li>
+                            <li><a href="/searchEngFork">Engelske forkortelser</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fransk<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Fransk</li>
+                            <li><a href="/search" class="hidden-xs">Dansk/Fransk</a></li>
+                            <li><a href="/search" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Dansk/Fransk</a></li>
+                            <li><a href="/searchfr" class="hidden-xs">Fransk/Dansk</a></li>
+                            <li><a href="/searchfr" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Fransk/Dansk</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="/searchTactic">Hærens Taktiske Ordbog</a></li>
+                   <!-- <li><a href="/contact" class="hidden-xs">Kontakt</a></li>
+                    <li><a href="/contact" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Kontakt</a></li>-->
+
+                    {{#if currentUser}}
+                        <li><a href="/admin">Administration</a></li>
+                        <li><a href="#" class="logout">Logout</a></li>
+                        <!--  <li><span data-toggle="modal" href="#loginmodal" class="glyphicon glyphicon-log-in clickable"></span></li>-->
+                    {{/if}}
+
+
+                </ul>
+               <!-- <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./" class="hidden-xs">Log på</a></li>
+
+                </ul>-->
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+
+
+</template>

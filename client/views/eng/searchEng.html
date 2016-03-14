@@ -1,0 +1,87 @@
+
+<template name="searchEng">
+
+    <div class="page-header">
+        <h1>Hærtaktisk Ordliste
+            <small>dansk engelsk</small>
+        </h1>
+    </div>
+    <p> <b>Din søgning giver: {{total}} resultater</b></p>
+
+    <b><p>Søg på danske ord</p></b>
+    <div class="grey-background">
+        <div class="input-group">
+
+            {{> esInput index="eng"  class="form-control empty"  reactive="false"  placeholder="Søg..." }}
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="results-wrapper">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Dansk</th>
+                    <th>Engelsk</th>
+                    <th>EN fork</th>
+                    <th>DK fork</th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+
+
+                {{#esEach index="eng"}}
+                    <tr>
+                        <td>{{value}}</td>
+                        <td>{{engelsk}}</td>
+                        <td>{{fork_uk}}</td>
+                        <td>{{fork_da}}</td>
+                    </tr>
+                {{/esEach}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{> esLoadMoreButton index="eng" content="Hent flere.."}}
+
+    {{#ifEsInputIsEmpty index="eng"}}
+
+
+
+            <h1>Vejledning</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                {{> vejl}}
+
+
+            </div>
+            <div class="col-md-6">
+
+
+
+            </div>
+        </div>
+
+    {{/ifEsInputIsEmpty}}
+
+    {{#ifEsIsSearching index="eng"}}
+        <div>Henter data...</div>
+        {{> spinner}}
+
+
+    {{/ifEsIsSearching}}
+
+    {{#ifEsHasNoResults index="eng"}}
+        <div class="no-results">Beklager, men det kan jeg ikke finde til dig!</div>
+    {{/ifEsHasNoResults}}
+</template>

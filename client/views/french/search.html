@@ -1,0 +1,109 @@
+
+<template name="search">
+
+    <div class="page-header">
+        <h1>Dansk - fransk <small>ordliste</small></h1>
+    </div>
+    <p> <b>Din søgning giver: {{total}} resultater</b></p>
+    <b><p>Søg på danske ord</p></b>
+    <div class="grey-background">
+        <div class="input-group">
+
+            {{> esInput index="wordsdk"  class="form-control empty"  reactive="false"  placeholder="Indtast dansk ord..." }}
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="results-wrapper">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Dansk</th>
+                    <th>Fransk</th>
+                    <th>FR fork</th>
+                    <th>DK fork</th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+
+                <div>Søg Dansk - Fransk</div>
+                {{#esEach index="wordsdk"}}
+                    <tr>
+                        <td>{{DK}}</td>
+                        <td>{{FR}} ({{Ordklasse}})</td>
+                        <td>{{FRForkortelse}}</td>
+                        <td>{{DKforkortelse}}</td>
+                    </tr>
+                {{/esEach}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    {{> esLoadMoreButton index="wordsdk" content="Hent flere.."}}
+
+{{#ifEsInputIsEmpty index="wordsdk"}}
+
+
+
+
+                <h1>Vejledning</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{> vejl}}
+
+                </div>
+                <div class="col-md-6">
+                    <p><b> Følgende forkortelser og signaturer er anvendt:</b></p>
+
+                    <p>f femininum</p>
+
+                    <p>m maskulinum</p>
+
+                    <p>sing singularis (ental)</p>
+
+                    <p>pl pluralis (flertal)</p>
+
+                    <p>adj adjektiv (tillægsord)</p>
+
+                    <p>adv adverbium (biord)</p>
+
+                    <p>præp præposition (forholdsord)</p>
+
+                    <p>1. verbum (udsagnsord, 1. regelmæssig bøjning)</p>
+
+                    <p>2. verbum (udsagnsord, 2. regelmæssig bøjning)</p>
+
+                    <p>3. verbum (udsagnsord, 3. regelmæssig bøjning)</p>
+
+                    <p>U verbum (udsagnsord, uregelmæssig bøjning)</p>
+
+                    <p>* omtrentlig oversættelse til det pågældende sprog</p>
+                </div>
+            </div>
+
+    {{/ifEsInputIsEmpty}}
+
+    {{#ifEsIsSearching index="wordsdk"}}
+        <div>Henter data...</div>
+        {{> spinner}}
+
+
+    {{/ifEsIsSearching}}
+
+    {{#ifEsHasNoResults index="wordsdk"}}
+        <div class="no-results">Beklager, men det kan jeg ikke finde til dig!</div>
+    {{/ifEsHasNoResults}}
+ </template>

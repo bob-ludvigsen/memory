@@ -1,0 +1,92 @@
+
+<template name="searchEngFork">
+
+    <div class="page-header">
+        <h1>Hærtaktisk Ordliste
+            <small>engelske forkortelser</small>
+        </h1>
+    </div>
+    <p> <b>Din søgning giver: {{total}} resultater</b></p>
+
+    <b><p>Søg på engelske forkortelser</p></b>
+    <div class="grey-background">
+        <div class="input-group">
+
+            {{> esInput index="engFork"  class="form-control empty"  reactive="false"  placeholder="Søg..." }}
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="results-wrapper">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>EN fork</th>
+                    <th>Engelsk</th>
+                    <th>Dansk</th>
+                    <th>DK fork</th>
+
+                </tr>
+
+                </thead>
+                <tbody>
+
+
+
+                {{#esEach index="engFork"}}
+                    <tr>
+                        <td>{{fork_uk}}</td>
+                        <td>{{engelsk}}</td>
+                        <td>{{value}}</td>
+                        <td>{{fork_da}}</td>
+
+
+
+
+                    </tr>
+                {{/esEach}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{> esLoadMoreButton index="engFork" content="Hent flere.."}}
+
+    {{#ifEsInputIsEmpty index="engFork"}}
+
+
+
+            <h1>Vejledning</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                {{> vejl}}
+
+
+            </div>
+            <div class="col-md-6">
+
+
+
+            </div>
+        </div>
+
+    {{/ifEsInputIsEmpty}}
+
+    {{#ifEsIsSearching index="engFork"}}
+        <div>Henter data...</div>
+        {{> spinner}}
+
+
+    {{/ifEsIsSearching}}
+
+    {{#ifEsHasNoResults index="engFork"}}
+        <div class="no-results">Beklager, men det kan jeg ikke finde til dig!</div>
+    {{/ifEsHasNoResults}}
+</template>
